@@ -1,5 +1,7 @@
 # Jazz Vector
 
+<img src="docs/jazz_vector.svg" width="200" />
+
 **Local-first vector similarity search for [Jazz](https://jazz.tools)**
 
 Store and query high-dimensional vectors directly on-device: private, offline-first, and collaborative.
