@@ -2,6 +2,7 @@
 
 **Local-first vector similarity search for [Jazz](https://jazz.tools)**
 
+
 Store and query high-dimensional vectors directly on-device: private, offline-first, and collaborative.
 
 Built on Jazz, you get:
@@ -14,11 +15,24 @@ When paired with a local embeddings model:
 
 - Works fully offline
 
+
 #### 👉 [Live demo](https://jazz-vector-demo.playdeux.com) ([source](https://github.com/kysely/jazz-vector/tree/main/examples/demo))
 
----
+```typescript
+// -- schema.ts --
+export const JournalEntry = co.map({
+  text: z.string(),
+  simpleEmbedding: coV.vector(384), // <-
+});
 
-![Jazz Vector schema](./docs/simple_schema.svg)
+// -- app.tsx --
+const { search, isSearching } = useCoVectorSearch(
+  journalEntries,
+  (entry) => entry.simpleEmbedding,
+  queryEmbedding
+);
+```
+
 
 ## Use cases
 
@@ -75,6 +89,8 @@ When paired with a local embeddings model:
 - _Anomaly detection_: Spot outliers in logs or metrics locally
 - _Storage hygiene_: Identify stale or redundant items to archive
 </details>
+
+![Jazz Vector schema](./docs/simple_schema.svg)
 
 ## Installation
 
