@@ -16,6 +16,10 @@ When paired with a local embeddings model:
 
 #### 👉 [Live demo](https://jazz-vector-demo.playdeux.com) ([source](https://github.com/kysely/jazz-vector/tree/main/examples/demo))
 
+---
+
+![Jazz Vector schema](./docs/simple_schema.svg)
+
 ## Use cases
 
 - **Semantic search**: Find notes, docs, or messages by meaning
@@ -77,7 +81,7 @@ When paired with a local embeddings model:
 Requires [`jazz-tools`](https://www.npmjs.com/package/jazz-tools) to be already installed.
 
 ```bash
-npm install jazz-vector
+npm i jazz-vector
 ```
 
 ## Embeddings (Bring Your Own)
