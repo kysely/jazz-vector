@@ -14,7 +14,7 @@ When paired with a local embeddings model:
 
 - Works fully offline
 
-#### **DEMO:** [Source repo](https://github.com/kysely/jazz-vector/tree/main/examples/demo)
+#### 👉 [Live demo](https://jazz-vector-demo.playdeux.com) ([source](https://github.com/kysely/jazz-vector/tree/main/examples/demo))
 
 ## Use cases
 
