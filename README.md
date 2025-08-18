@@ -90,8 +90,6 @@ const { search, isSearching } = useCoVectorSearch(
 - _Storage hygiene_: Identify stale or redundant items to archive
 </details>
 
-![Jazz Vector schema](./docs/simple_schema.svg)
-
 ## Installation
 
 Requires [`jazz-tools`](https://www.npmjs.com/package/jazz-tools) to be already installed.
