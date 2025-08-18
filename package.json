@@ -1,0 +1,58 @@
+{
+  "name": "jazz-vector",
+  "version": "0.0.1",
+  "description": "Local-first vector similarity search for Jazz Tools",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "src",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./react": "./dist/react/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "vector search",
+    "semantic search",
+    "local-first",
+    "personalization",
+    "rag"
+  ],
+  "author": "Radek Kysely <radek@kysely.org>",
+  "license": "MIT",
+  "peerDependencies": {
+    "jazz-tools": "^0.17.4",
+    "react": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.1.10",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kysely/jazz-vector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kysely/jazz-vector/issues"
+  },
+  "homepage": "https://github.com/kysely/jazz-vector#readme"
+}
