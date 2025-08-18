@@ -1,6 +1,4 @@
-# Jazz Vector
-
-<img src="docs/jazz_vector.svg" width="200" />
+# <img src="https://github.com/kysely/jazz-vector/raw/main/docs/jazz_vector.svg" width="220" alt="Jazz Vector" />
 
 **Local-first vector similarity search for [Jazz](https://jazz.tools)**
 
@@ -15,6 +13,8 @@ Built on Jazz, you get:
 When paired with a local embeddings model:
 
 - Works fully offline
+
+#### **DEMO:** [Source repo](https://github.com/kysely/jazz-vector/tree/main/examples/demo)
 
 ## Use cases
 
