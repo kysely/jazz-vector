@@ -1,6 +1,6 @@
 {
   "name": "jazz-vector",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Local-first vector similarity search for Jazz Tools",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
