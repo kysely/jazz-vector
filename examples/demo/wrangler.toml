@@ -1,0 +1,13 @@
+name = "jazz-vector-demo"
+compatibility_date = "2024-01-01"
+
+routes = [
+  { pattern = "jazz-vector-demo.playdeux.com", custom_domain = true },
+  { pattern = "jazz-vector-demo.playdeux.com/*", zone_name = "playdeux.com" }
+]
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "./dist"
