@@ -111,7 +111,7 @@ function App() {
             ) : isSearchingGlobally ? (
               <>Searching...</>
             ) : search && search.didSearch ? (
-              <div className="">
+              <div>
                 Found {search.results.length} journal entries relatable to{" "}
                 <span className="inline-block rounded-full py-px px-2 bg-zinc-200">
                   {searchInputRef.current?.value}
@@ -120,9 +120,11 @@ function App() {
               </div>
             ) : journalEntries && journalEntries.length > 0 ? (
               <>
-                Showing{" "}
-                <span className="tabular-nums">{journalEntries.length}</span>{" "}
-                journal entries.
+                <div>
+                  Showing{" "}
+                  <span className="tabular-nums">{journalEntries.length}</span>{" "}
+                  journal entries.
+                </div>
                 <button
                   className="bg-zinc-200 px-2 rounded cursor-pointer hover:bg-zinc-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={promptNewEntry}
