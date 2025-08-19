@@ -120,7 +120,9 @@ function App() {
               </div>
             ) : journalEntries && journalEntries.length > 0 ? (
               <>
-                Showing {journalEntries.length} journal entries.
+                Showing{" "}
+                <span className="tabular-nums">{journalEntries.length}</span>{" "}
+                journal entries.
                 <button
                   className="bg-zinc-200 px-2 rounded cursor-pointer hover:bg-zinc-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={promptNewEntry}
