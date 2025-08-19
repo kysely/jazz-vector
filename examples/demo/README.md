@@ -1,13 +1,15 @@
 # Jazz Vector demo journal app
 
-**A simple demo of Jazz Vector. It acts as a personal journal app that lets you store journal entries.**
+**A simple demo of Jazz Vector: a personal journal app that lets you retrieve relatable journal entries.**
 
-It shows off storage & semantic search of high-dimensional vectors:
+Built on top of [Jazz](https://jazz.tools), it shows off storage & semantic search of high-dimensional vectors with:
 
 - local first
 - sync across devices
 - end-to-end encryption
 - full offline support
+
+#### 👉 [Live deployment](https://jazz-vector-demo.playdeux.com)
 
 ## Running locally
 

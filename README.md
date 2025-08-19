@@ -22,7 +22,7 @@ When paired with a local embeddings model:
 // -- schema.ts --
 export const JournalEntry = co.map({
   text: z.string(),
-  simpleEmbedding: coV.vector(384), // <-
+  simpleEmbedding: coV.vector(384), // <--- Define CoVector
 });
 
 // -- app.tsx --
