@@ -220,109 +220,6 @@ There are 2 search functions available:
 - [`useCoVectorSearch` hook](#use-covector-search) for React apps
 - [`searchCoVector` function](#search-covector) for server workers or vanilla JS
 
-## API
-
-<a name="covector-definer"></a>
-
-### `coV.vector()`
-
-Defines a `CoVector` schema in the Jazz storage schema.
-
-#### Parameters:
-
-| Parameter    | Type   | Description                                        |
-| ------------ | ------ | -------------------------------------------------- |
-| `dimensions` | Number | The number of embedding vector dimensions (length) |
-
-#### Returns
-
-- CoVector schema (extension of [Jazz's built-in FileStream](https://jazz.tools/docs/react/using-covalues/filestreams) schema with [`.createFrom` method](#ceovector-create-from))
-
-<a name="ceovector-create-from"></a>
-
-### `CoVector.createFrom()`
-
-Creates an instance of `CoVector` from CoVector schema.
-
-#### Parameters:
-
-| Parameter | Type                                                                                              | Description                                                                                                |
-| --------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `vector`  | Array of Number; or `Float32Array`                                                                | The raw vector data. Must have the exact dimension (length) as [defined in the schema](#covector-definer). |
-| `options` | [Jazz Ownership Object (see)](https://jazz.tools/docs/react/using-covalues/filestreams#ownership) | Native Jazz's ownership options                                                                            |
-
-#### Returns
-
-- CoVector ([Jazz `FileStream`](https://jazz.tools/docs/react/using-covalues/filestreams))
-
-<a name="use-covector-search"></a>
-
-### `useCoVectorSearch()` (React only)
-
-Performs a vector search on a CoList. React hook.
-
-Automatically recalculates the results when the searched list or query changes.
-
-#### Parameters:
-
-| Parameter         | Type                                                                                      | Description                                                                                                                                                                                                                                             |
-| ----------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list`            | `CoList` or `undefined` or `null`                                                         | An instance of CoList to search in.                                                                                                                                                                                                                     |
-| `embeddingGetter` | Function                                                                                  | Getter function for the embedding property on each list item.                                                                                                                                                                                           |
-| `queryEmbeddings` | `number[]` or `Float32Array` or `null`                                                    | Embedding vector for the search query. When query is `null`, the entire list will be passed through.                                                                                                                                                    |
-| `filterOptions`   | `{ limit: N }` or<br />`{ similarityThreshold: N }` or <br />`{ similarityTopPercent: N}` | Controls how many results are returned. `limit` sets the maximum exact number of results; `similarityThreshold` filters by minimum similarity score; `similarityTopPercent` filters N% top percents based on the highest score. Default `{ limit: 10 }` |
-
-#### Returns
-
-| Parameter     | Type                                                                 | Description                                       |
-| ------------- | -------------------------------------------------------------------- | ------------------------------------------------- |
-| `isSearching` | Boolean                                                              | Determines whether a search is currently pending. |
-| `search`      | [`CoVectorSearchResult` (see details)](#covector-search-result-type) | Search results.                                   |
-| `error`       | String (optional)                                                    | Eventual error from the search                    |
-
-<a name="search-covector"></a>
-
-### `searchCoVector()` (server or vanilla JS)
-
-Performs a vector search on a CoList. Asynchronous function to be used in the server worker, or a vanilla JS code.
-
-#### Parameters:
-
-| Parameter                         | Type                                                                                     | Description                                                                                                                                                                                                                                             |
-| --------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list`                            | `CoList` or `undefined` or `null`                                                        | An instance of CoList to search in.                                                                                                                                                                                                                     |
-| `embeddingGetter`                 | Function                                                                                 | Getter function for the embedding property on each list item.                                                                                                                                                                                           |
-| `queryEmbeddings`                 | `number[]` or `Float32Array` or `null`                                                   | Embedding vector for the search query. When query is `null`, the entire list will be passed through.                                                                                                                                                    |
-| `options`                         | Object (optional)                                                                        |                                                                                                                                                                                                                                                         |
-| &nbsp;&nbsp;&nbsp;`filterOptions` | `{ limit: N }` or<br />`{ similarityThreshold: N }` or<br />`{ similarityTopPercent: N}` | Controls how many results are returned. `limit` sets the maximum exact number of results; `similarityThreshold` filters by minimum similarity score; `similarityTopPercent` filters N% top percents based on the highest score. Default `{ limit: 10 }` |
-| &nbsp;&nbsp;&nbsp;`abortSignal`   | `AbortSignal`                                                                            | Adds ability to abort the search                                                                                                                                                                                                                        |
-
-#### Returns:
-
-- [`CoVectorSearchResult` (see details)](#covector-search-result-type)
-
-<a name="covector-search-result-type"></a>
-
-### `CoVectorSearchResult` (type)
-
-Result of the vector search call.
-
-Has 3 variants based on input `list`:
-
-- `undefined` when input `list` is `undefined`
-- `null` when input `list` is `null`
-- Object (see below) when input `list` has data
-
-| Parameter                      | Type                                        | Description                                                                                                    |
-| ------------------------------ | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `didSearch`                    | Boolean                                     | Determines whether the search was performed or not.                                                            |
-| `durationMs`                   | Number (optional)                           | Duration of the vector search in milliseconds.                                                                 |
-| `results`                      | Array                                       | Array of results, sorted by `similarity` from highest to lowest; or the original list data if query was `null` |
-| &nbsp;&nbsp;&nbsp;`value`      | CoList item type                            | The original item from the CoList                                                                              |
-| &nbsp;&nbsp;&nbsp;`similarity` | Number (optional)<br />between `-1` and `1` | Similarity score of this value to the query. Will be present if the search was performed (input query was set) |
-
-**When the input query is `null` the search will pass through all of the original data wrapped in `CoVectorSearchResult` type (with `didSearch: false` and `results` array without a `similarity` score).**
-
 ## Patterns
 
 ### Manual “index”
@@ -441,6 +338,109 @@ const searchResults = searchCoVector(
   queryEmbeddings
 );
 ```
+
+## API
+
+<a name="covector-definer"></a>
+
+### `coV.vector()`
+
+Defines a `CoVector` schema in the Jazz storage schema.
+
+#### Parameters:
+
+| Parameter    | Type   | Description                                        |
+| ------------ | ------ | -------------------------------------------------- |
+| `dimensions` | Number | The number of embedding vector dimensions (length) |
+
+#### Returns
+
+- CoVector schema (extension of [Jazz's built-in FileStream](https://jazz.tools/docs/react/using-covalues/filestreams) schema with [`.createFrom` method](#ceovector-create-from))
+
+<a name="ceovector-create-from"></a>
+
+### `CoVector.createFrom()`
+
+Creates an instance of `CoVector` from CoVector schema.
+
+#### Parameters:
+
+| Parameter | Type                                                                                              | Description                                                                                                |
+| --------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `vector`  | Array of Number; or `Float32Array`                                                                | The raw vector data. Must have the exact dimension (length) as [defined in the schema](#covector-definer). |
+| `options` | [Jazz Ownership Object (see)](https://jazz.tools/docs/react/using-covalues/filestreams#ownership) | Native Jazz's ownership options                                                                            |
+
+#### Returns
+
+- CoVector ([Jazz `FileStream`](https://jazz.tools/docs/react/using-covalues/filestreams))
+
+<a name="use-covector-search"></a>
+
+### `useCoVectorSearch()` (React only)
+
+Performs a vector search on a CoList. React hook.
+
+Automatically recalculates the results when the searched list or query changes.
+
+#### Parameters:
+
+| Parameter         | Type                                                                                      | Description                                                                                                                                                                                                                                             |
+| ----------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list`            | `CoList` or `undefined` or `null`                                                         | An instance of CoList to search in.                                                                                                                                                                                                                     |
+| `embeddingGetter` | Function                                                                                  | Getter function for the embedding property on each list item.                                                                                                                                                                                           |
+| `queryEmbeddings` | `number[]` or `Float32Array` or `null`                                                    | Embedding vector for the search query. When query is `null`, the entire list will be passed through.                                                                                                                                                    |
+| `filterOptions`   | `{ limit: N }` or<br />`{ similarityThreshold: N }` or <br />`{ similarityTopPercent: N}` | Controls how many results are returned. `limit` sets the maximum exact number of results; `similarityThreshold` filters by minimum similarity score; `similarityTopPercent` filters N% top percents based on the highest score. Default `{ limit: 10 }` |
+
+#### Returns
+
+| Parameter     | Type                                                                 | Description                                       |
+| ------------- | -------------------------------------------------------------------- | ------------------------------------------------- |
+| `isSearching` | Boolean                                                              | Determines whether a search is currently pending. |
+| `search`      | [`CoVectorSearchResult` (see details)](#covector-search-result-type) | Search results.                                   |
+| `error`       | String (optional)                                                    | Eventual error from the search                    |
+
+<a name="search-covector"></a>
+
+### `searchCoVector()` (server or vanilla JS)
+
+Performs a vector search on a CoList. Asynchronous function to be used in the server worker, or a vanilla JS code.
+
+#### Parameters:
+
+| Parameter                         | Type                                                                                     | Description                                                                                                                                                                                                                                             |
+| --------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list`                            | `CoList` or `undefined` or `null`                                                        | An instance of CoList to search in.                                                                                                                                                                                                                     |
+| `embeddingGetter`                 | Function                                                                                 | Getter function for the embedding property on each list item.                                                                                                                                                                                           |
+| `queryEmbeddings`                 | `number[]` or `Float32Array` or `null`                                                   | Embedding vector for the search query. When query is `null`, the entire list will be passed through.                                                                                                                                                    |
+| `options`                         | Object (optional)                                                                        |                                                                                                                                                                                                                                                         |
+| &nbsp;&nbsp;&nbsp;`filterOptions` | `{ limit: N }` or<br />`{ similarityThreshold: N }` or<br />`{ similarityTopPercent: N}` | Controls how many results are returned. `limit` sets the maximum exact number of results; `similarityThreshold` filters by minimum similarity score; `similarityTopPercent` filters N% top percents based on the highest score. Default `{ limit: 10 }` |
+| &nbsp;&nbsp;&nbsp;`abortSignal`   | `AbortSignal`                                                                            | Adds ability to abort the search                                                                                                                                                                                                                        |
+
+#### Returns:
+
+- [`CoVectorSearchResult` (see details)](#covector-search-result-type)
+
+<a name="covector-search-result-type"></a>
+
+### `CoVectorSearchResult` (type)
+
+Result of the vector search call.
+
+Has 3 variants based on input `list`:
+
+- `undefined` when input `list` is `undefined`
+- `null` when input `list` is `null`
+- Object (see below) when input `list` has data
+
+| Parameter                      | Type                                        | Description                                                                                                    |
+| ------------------------------ | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `didSearch`                    | Boolean                                     | Determines whether the search was performed or not.                                                            |
+| `durationMs`                   | Number (optional)                           | Duration of the vector search in milliseconds.                                                                 |
+| `results`                      | Array                                       | Array of results, sorted by `similarity` from highest to lowest; or the original list data if query was `null` |
+| &nbsp;&nbsp;&nbsp;`value`      | CoList item type                            | The original item from the CoList                                                                              |
+| &nbsp;&nbsp;&nbsp;`similarity` | Number (optional)<br />between `-1` and `1` | Similarity score of this value to the query. Will be present if the search was performed (input query was set) |
+
+**When the input query is `null` the search will pass through all of the original data wrapped in `CoVectorSearchResult` type (with `didSearch: false` and `results` array without a `similarity` score).**
 
 ## Status & Roadmap
 
