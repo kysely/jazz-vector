@@ -9,7 +9,7 @@ Built on top of [Jazz](https://jazz.tools), it shows off storage & semantic sear
 - end-to-end encryption
 - full offline support
 
-#### 👉 [Live deployment](https://jazz-vector-demo.playdeux.com)
+#### 👉 [Try out the live demo](https://jazz-vector-demo.playdeux.com)
 
 ## Running locally
 

@@ -1,9 +1,10 @@
-# <img src="https://github.com/kysely/jazz-vector/raw/main/docs/jazz_vector.svg" width="220" alt="Jazz Vector" />
+<img src="https://github.com/kysely/jazz-vector/raw/main/docs/jazz_vector.svg" width="220" alt="Jazz Vector" />
+
+[Get started](#installation) • [Try the demo](https://jazz-vector-demo.playdeux.com) • [Example](https://github.com/kysely/jazz-vector/tree/main/examples/demo) • [API](#api) • [Advanced](#patterns)
 
 **Local-first vector similarity search for [Jazz](https://jazz.tools)**
 
-
-Store and query high-dimensional vectors directly on-device: private, offline-first, and collaborative.
+Store and query high-dimensional vectors directly on-device.
 
 Built on Jazz, you get:
 
@@ -15,8 +16,7 @@ When paired with a local embeddings model:
 
 - Works fully offline
 
-
-#### 👉 [Live demo](https://jazz-vector-demo.playdeux.com) ([source](https://github.com/kysely/jazz-vector/tree/main/examples/demo))
+#### 👉 [Try the live demo](https://jazz-vector-demo.playdeux.com) ([source](https://github.com/kysely/jazz-vector/tree/main/examples/demo))
 
 ```typescript
 // -- schema.ts --
