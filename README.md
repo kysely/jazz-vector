@@ -92,11 +92,13 @@ const { search, isSearching } = useCoVectorSearch(
 
 ## Installation
 
-Requires [`jazz-tools`](https://www.npmjs.com/package/jazz-tools) to be already installed.
+Install the package from [npm](https://www.npmjs.com/package/jazz-vector):
 
 ```bash
 npm i jazz-vector
 ```
+
+Requires [`jazz-tools`](https://www.npmjs.com/package/jazz-tools) (minimum `0.17.4`) to be already installed.
 
 ## Embeddings (Bring Your Own)
 
