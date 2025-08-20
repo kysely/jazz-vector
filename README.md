@@ -17,6 +17,7 @@ When paired with a local embeddings model:
 - Works fully offline
 
 #### 👉 [Try the live demo](https://jazz-vector-demo.playdeux.com) ([source](https://github.com/kysely/jazz-vector/tree/main/examples/demo))
+#### <img height="20" alt="Play demo" src="https://github.com/user-attachments/assets/4d823dbb-4fad-4cb7-806b-af2998beb3ed" /> [Watch the intro , ~5 min](https://vimeo.com/1111603758?share=copy)
 
 ```typescript
 // -- schema.ts --
@@ -32,7 +33,6 @@ const { search, isSearching } = useCoVectorSearch(
   queryEmbedding
 );
 ```
-
 
 ## Use cases
 
