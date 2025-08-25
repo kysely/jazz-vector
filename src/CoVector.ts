@@ -1,5 +1,5 @@
 import { Account, co, FileStream, Group } from "jazz-tools";
-import { ensureVector, type VectorInput } from "./vector";
+import { ensureVector, type VectorInput } from "./vector.js";
 
 /**
  * This is a virtual schema just to disable type hinting for FileStreamSchema's

@@ -5,8 +5,8 @@ import {
   type CoVectorSearchFilter,
   type CoVectorSearchResult,
   searchCoVector,
-} from "../search-covector";
-import { type VectorInput } from "../vector";
+} from "../search-covector.js";
+import { type VectorInput } from "../vector.js";
 
 /**
  * React hook that performs a vector search on a CoList.

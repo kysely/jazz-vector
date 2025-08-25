@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2021",
-    "module": "esnext",
+    "module": "NodeNext",
     "lib": ["ESNext", "DOM"],
     "declaration": true,
     "declarationMap": true,
@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "NodeNext",
     "moduleDetection": "force",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,

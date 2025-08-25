@@ -1,6 +1,6 @@
 import { CoList, FileStream, Ref } from "jazz-tools";
-import { readCoVectorFromFileStream } from "./CoVector";
-import { cosineSimilarity, ensureVector, type VectorInput } from "./vector";
+import { readCoVectorFromFileStream } from "./CoVector.js";
+import { cosineSimilarity, ensureVector, type VectorInput } from "./vector.js";
 
 /**
  * Function that selects the embedding for a given item in the list.

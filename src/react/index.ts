@@ -1,1 +1,1 @@
-export * from "./use-covector-search";
+export * from "./use-covector-search.js";
